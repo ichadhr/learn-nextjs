@@ -22,8 +22,18 @@ const MenuItems = ({ item }: { item: ISideNav }) => {
   const PathName = usePathname();
 
   const isActive = useMemo(() => {
+
+    if(SubMenus && SubMenus.length > 0) {
+      if(SubMenus.find((sub) => sub.Path === PathName)) {
+        setExpanded(true);
+        return true;
+      } else {
+        setExpanded(false);
+      }
+    }
+
     return Path === PathName;
-  }, [Path, PathName]);
+  }, [Path, PathName, SubMenus]);
 
   return (
     <>
