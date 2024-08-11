@@ -4,7 +4,7 @@ export interface ISideNav {
     Name: string;
     Path: string;
     Icon: LucideIcon;
-    SubMenu?: ISubSideNav[];
+    SubMenus?: ISubSideNav[];
 }
 
 export interface ISubSideNav {

@@ -30,7 +30,7 @@ const Menus: ISideNav[] = [
     Name: "Settings",
     Path: "/settings",
     Icon: Settings,
-    SubMenu: [
+    SubMenus: [
       {
         Name: "General",
         Path: "/settings",

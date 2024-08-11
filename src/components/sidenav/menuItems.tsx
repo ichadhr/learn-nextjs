@@ -1,19 +1,18 @@
-
-
 import { ISideNav } from "@/app/types/menu";
 import { ChevronDown } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useMemo, useState } from 'react'
+import SubMenuItems from "./subMenus";
 
 const MenuItems = ({ item }: { item: ISideNav }) => {
-  const { Name, Icon: IconComponent, SubMenu, Path } = item;
-  const [ Expanded, setExpanded ] = useState(false);
+  const { Name, Icon: IconComponent, SubMenus, Path } = item;
+  const [Expanded, setExpanded] = useState(false);
 
   const router = useRouter();
 
   const OnClick = () => {
 
-    if (SubMenu && SubMenu.length > 0) {
+    if (SubMenus && SubMenus.length > 0) {
       return setExpanded(!Expanded);
     }
 
@@ -33,11 +32,17 @@ const MenuItems = ({ item }: { item: ISideNav }) => {
           <IconComponent size={20} />
           <p className='text-sm font-semibold'>{Name}</p>
         </div>
-        {SubMenu && SubMenu.length > 0 && <ChevronDown size={18} 
-        className={Expanded ? 'rotate-180 duration-200' : 'duration-200'}
+        {SubMenus && SubMenus.length > 0 && <ChevronDown size={18}
+          className={Expanded ? 'rotate-180 duration-200' : 'duration-200'}
         />}
       </div>
-      {Expanded && <p>Expanded</p>}
+      {Expanded && SubMenus && SubMenus.length > 0 && (
+        <div className="flex flex-col space-y-1 ml-10">
+          {SubMenus.map((sub) => (
+            <SubMenuItems key={sub.Path} SubMenu={sub} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
