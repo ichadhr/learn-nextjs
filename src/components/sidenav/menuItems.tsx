@@ -27,7 +27,7 @@ const MenuItems = ({ item }: { item: ISideNav }) => {
 
   return (
     <>
-      <div className={`flex items-center p-3 rounded-lg cursor-pointer justify-between text-sidenav-iconColor hover:text-sidenav-active hover:bg-sidenav-background ${isActive && 'text-sidenav-active bg-sidenav-background'}`} onClick={OnClick}>
+      <div className={`flex items-center p-3 rounded-lg cursor-pointer justify-between hover:text-sidenav-active hover:bg-sidenav-background ${isActive && 'text-sidenav-active bg-sidenav-background'}`} onClick={OnClick}>
         <div className="flex items-center space-x-2">
           <IconComponent size={20} />
           <p className='text-sm font-semibold'>{Name}</p>
@@ -37,7 +37,7 @@ const MenuItems = ({ item }: { item: ISideNav }) => {
         />}
       </div>
       {Expanded && SubMenus && SubMenus.length > 0 && (
-        <div className="flex flex-col space-y-1 ml-10">
+        <div className="flex flex-col space-y-2 ml-10">
           {SubMenus.map((sub) => (
             <SubMenuItems key={sub.Path} SubMenu={sub} />
           ))}
